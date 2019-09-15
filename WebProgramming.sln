@@ -8,9 +8,46 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		index.html = index.html
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{990CDF46-FC6C-4277-9E55-CDFF75769B5D}"
+	ProjectSection(SolutionItems) = preProject
+		css\bootstrap-theme.css = css\bootstrap-theme.css
+		css\bootstrap-theme.css.map = css\bootstrap-theme.css.map
+		css\bootstrap-theme.min.css = css\bootstrap-theme.min.css
+		css\bootstrap.css = css\bootstrap.css
+		css\bootstrap.css.map = css\bootstrap.css.map
+		css\bootstrap.min.css = css\bootstrap.min.css
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fonts", "fonts", "{50AD1D9F-FFAF-4A74-813E-D42559639356}"
+	ProjectSection(SolutionItems) = preProject
+		fonts\glyphicons-halflings-regular.eot = fonts\glyphicons-halflings-regular.eot
+		fonts\glyphicons-halflings-regular.svg = fonts\glyphicons-halflings-regular.svg
+		fonts\glyphicons-halflings-regular.ttf = fonts\glyphicons-halflings-regular.ttf
+		fonts\glyphicons-halflings-regular.woff = fonts\glyphicons-halflings-regular.woff
+		fonts\glyphicons-halflings-regular.woff2 = fonts\glyphicons-halflings-regular.woff2
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{48F372F1-94F5-4A5B-B0B8-46FC54892D8D}"
+	ProjectSection(SolutionItems) = preProject
+		js\bootstrap.js = js\bootstrap.js
+		js\bootstrap.min.js = js\bootstrap.min.js
+		js\npm.js = js\npm.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{304FFD7A-E5A1-42D5-9996-E8C5259A0FCD}"
+	ProjectSection(SolutionItems) = preProject
+		images\shapka.jpg = images\shapka.jpg
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{990CDF46-FC6C-4277-9E55-CDFF75769B5D} = {0576461B-F669-40F4-B2E5-E737C7859C42}
+		{50AD1D9F-FFAF-4A74-813E-D42559639356} = {0576461B-F669-40F4-B2E5-E737C7859C42}
+		{48F372F1-94F5-4A5B-B0B8-46FC54892D8D} = {0576461B-F669-40F4-B2E5-E737C7859C42}
+		{304FFD7A-E5A1-42D5-9996-E8C5259A0FCD} = {0576461B-F669-40F4-B2E5-E737C7859C42}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {95EF5C92-238F-4FDF-97DD-C58299A72257}
