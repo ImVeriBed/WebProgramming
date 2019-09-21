@@ -33,15 +33,20 @@
         margin-left: 20%;
         
    }
-    .formHeader {       
+    .formHeader {    
         margin-left: auto;
-        margin-right: auto;
+        margin-right: auto;   
         margin-top: 15%;
         width: 40%;
         border: 1px solid black; 
         background: white; 
         border-radius: 10px;
+        font-size: 130%;
         padding: 3px;
+    }
+
+    .form-inline{
+        height: 50px;
     }
 
     .formVault {       
@@ -61,8 +66,9 @@
     }
 
     .btn-group-vertical{
-        margin-top: 2%;
         margin-left: 21%;
+        margin-top: 2%;
+        /* margin-left: 21%; */
         float: left;
         border: 1px solid black; 
         background: white; 
@@ -72,4 +78,7 @@
 
     .divHor {
         display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+
     }
