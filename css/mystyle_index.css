@@ -8,7 +8,20 @@
     background-image: url(../images/background.jpg);
     background-size: 100%;
     background-attachment: fixed;  
-}
+    }
+
+    .logo {    
+        background-image: url("../images/logo.png");
+        background-repeat: no-repeat;
+        background-size: cover;      
+        padding: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5em;
+        width: 150px;
+        height: 10em;
+        }
+
 
      .mainform {
         width: 55em;
@@ -72,7 +85,7 @@
         display: block;
     }
 
-    .divHor {       
+    .divflex {       
         width: 100%;
         height: 100%;
         position: fixed;

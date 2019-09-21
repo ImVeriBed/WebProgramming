@@ -17,12 +17,56 @@ td{
 .topright
 {
     width: 5em;
+    background-color: red;
 }
 
 .top{
     height: 5em;
 }
 
+.topg{
+    height: 5em;
+    background-color: green;
+}
+
+.topy{
+    height: 5em;
+    background-color: yellow;
+}
+
 .fat{
     width: 7em;
+}
+
+.fatb{
+    width: 7em;
+    background-color: blue;
+}
+
+.text-center{
+    margin: 3em;
+}
+
+.form-horizontal{
+    margin: 0 auto;
+    width: 50em;
+    margin-top: 1em;
+    border: 2px solid black; 
+    background: white; 
+    border-radius: 10px;
+    font-size: 100%;
+    padding: 3px;
+}
+
+.textar{
+    width: 42em;
+    margin: 0 auto;
+}
+
+.btncenter{
+    margin-left: 13em;
+}
+
+.form-group{
+    padding: 8px;
 }
