@@ -1,0 +1,19 @@
+.h1{
+    text-align: center;
+}
+
+table{
+    margin-left:auto;
+    margin-right: auto;
+    margin-top:  2em;
+    width: 25em;  
+    height: 2em;    
+}
+
+td{
+    border: 1px solid black; 
+}
+
+h3{
+    text-align: center;
+}

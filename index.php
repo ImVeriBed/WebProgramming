@@ -2,6 +2,7 @@
 	echo "<link href='css/bootstrap/bootstrap.css' rel='stylesheet'/>";
 	echo "<link href='css/mystyle_index.css' rel='stylesheet'/>";
 	include 'LAB2/lib.inc.php';
+	//include 'LAB2/lab_rab2.php';
 ?>
 	<html>
 
