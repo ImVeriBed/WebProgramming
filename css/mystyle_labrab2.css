@@ -2,12 +2,21 @@
     text-align: center;
 }
 
-table{
+.table1{
     margin-left:auto;
     margin-right: auto;
     margin-top:  2em;
     width: 25em;  
     height: 2em;    
+}
+
+.table2{
+    margin-left:auto;
+    margin-right: auto;
+    margin-top:  2em;
+    width: 55em;  
+    height: 10em;   
+    margin-bottom: 15px; 
 }
 
 td{
