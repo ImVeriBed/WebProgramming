@@ -50,7 +50,6 @@ function deleteTags($input, $except = null)
         <tr> 
             <td>
                 Исходная строка:
-                <br> 
                 "&lta&gt 24324 &ltb&gt 34535 &lth1&gt 456 &lt/h1&gt"
                 <br> 
                 Исключение: "&lth1&gt"
