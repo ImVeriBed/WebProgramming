@@ -4,15 +4,12 @@
 	include 'LAB2/lib.inc.php';
 ?>
 	<html>
-
 	<head>
 		<meta charset='utf-8' />
 		<title>Главная страница!</title>
 	</head>
-
 	<body>
 		<script src='js/bootstrap.js'></script>
-
 		<div class='divflex'>
 			<div class='logo'></div>
 			<!-- Верхняя панель -->
@@ -49,7 +46,5 @@
 			?>
 			<!-- /Нижняя панель -->
 		</div>
-
 	</body>
-
 	</html>
