@@ -1,72 +1,76 @@
-.h1{
+.h3 {
     text-align: center;
 }
 
-table{
-    margin-left:auto;
+table {
+    margin-left: auto;
     margin-right: auto;
-    margin-top:  2em;
-    width: 45em;  
-    height: 20em;    
+    /* margin-top:  2em; */
+    width: 45em;
+    height: 20em;
 }
 
-td{
-    border: 1px solid black; 
+td {
+    border: 1px solid black;
 }
 
-.topright
-{
+.topright {
     width: 5em;
     background-color: red;
 }
 
-.top{
+.top {
     height: 5em;
 }
 
-.topg{
+.topg {
     height: 5em;
     background-color: green;
 }
 
-.topy{
+.topy {
     height: 5em;
     background-color: yellow;
 }
 
-.fat{
+.fat {
     width: 7em;
 }
 
-.fatb{
+.fatb {
     width: 7em;
     background-color: blue;
 }
 
-.text-center{
+.text-center {
     margin: 3em;
 }
 
-.form-horizontal{
-    margin: 0 auto;
-    width: 50em;
-    margin-top: 1em;
-    border: 2px solid black; 
-    background: white; 
-    border-radius: 10px;
-    font-size: 100%;
-    padding: 3px;
-}
-
-.textar{
+.textar {
     width: 42em;
     margin: 0 auto;
 }
 
-.btncenter{
+.btncenter {
     margin-left: 13em;
 }
 
-.form-group{
-    padding: 8px;
+.form-group {
+    padding: 1em;
+}
+
+.btn {
+    font-size: 90%;
+}
+
+.maincontent {
+    border: 1px solid black;
+    background: white;
+    border-radius: 10px;
+    padding: 1px;
+    width: 84.5%;
+    height: 100%;
+    margin-left: 15.5%;
+    /* display: block; */
+    overflow: auto;
 }
