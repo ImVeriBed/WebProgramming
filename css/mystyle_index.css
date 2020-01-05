@@ -33,7 +33,7 @@
         border-radius: 10px;
         padding: 5px;
         display: block;
-        height: 45em;
+        height: 40em;
     }
     
     .textFont {
@@ -55,7 +55,7 @@
         background: white;
         border-radius: 10px;
         font-size: 100%;
-        padding: 3px;
+        padding: 1em;
     }
     
     .formVault {
@@ -65,11 +65,7 @@
         background: white;
         border-radius: 10px;
         font-size: 100%;
-        padding: 3px;
-    }
-    
-    .form-inline {
-        height: 35px;
+        text-align: center;
     }
     
     .btn {
@@ -99,11 +95,10 @@
         justify-content: center;
         overflow: auto;
     }
-    
-    .maincontent {
-        overflow: auto;
+    /* .maincontent {
+        overflow: none;
         border: 1px solid black;
         border-radius: 10px;
         padding: 5px;
         width: 30%;
-    }
+    } */

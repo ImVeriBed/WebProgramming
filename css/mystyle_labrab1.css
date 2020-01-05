@@ -6,8 +6,10 @@ table {
     margin-left: auto;
     margin-right: auto;
     /* margin-top:  2em; */
-    width: 45em;
-    height: 20em;
+    /* width: 45em;
+    height: 20em; */
+    width: 85%;
+    height: 1%;
 }
 
 td {
@@ -42,35 +44,26 @@ td {
     background-color: blue;
 }
 
-.text-center {
-    margin: 3em;
-}
-
 .textar {
     width: 42em;
     margin: 0 auto;
 }
 
 .btncenter {
-    margin-left: 13em;
-}
-
-.form-group {
-    padding: 1em;
+    margin-left: 20em;
 }
 
 .btn {
     font-size: 90%;
 }
 
-.maincontent {
+.maincontentlr1 {
     border: 1px solid black;
     background: white;
-    border-radius: 10px;
-    padding: 1px;
+    border-radius: 1em;
     width: 84.5%;
     height: 100%;
     margin-left: 15.5%;
-    /* display: block; */
+    display: block;
     overflow: auto;
 }

@@ -32,7 +32,7 @@ function deleteTags($input, $except = null)
 </head>
 
 <body>
-    <div class="maincontent">
+    <div class="maincontentlr2">
         <h3> Первое задание </h3>
         <table class="table1">
             <tr>
@@ -62,11 +62,6 @@ function deleteTags($input, $except = null)
                 </td>
             </tr>
         </table>
-        <div class="text-center">
-            <a href="../index.php" class="btn btn-default">
-                Вернуться назад
-            </a>
-        </div>
     </div>
 </body>
 
