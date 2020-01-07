@@ -1,13 +1,14 @@
-﻿<?php
-echo "<link href='css/bootstrap/bootstrap.css' rel='stylesheet'/>";
-echo "<link href='css/mystyle_index.css' rel='stylesheet'/>";
-include 'LAB2/lib.inc.php';
-// include 'LAB3/auth.php';
+<?php
+$page = "";
+if (!empty($_GET['page'])) $page = $_GET['page'];
 ?>
+
 <html>
 
 <head>
 	<meta charset='utf-8' />
+	<link href='css/bootstrap/bootstrap.css' rel='stylesheet' />
+	<link href='css/mystyle_index.css' rel='stylesheet' />
 	<title>Главная страница</title>
 </head>
 
@@ -25,12 +26,11 @@ include 'LAB2/lib.inc.php';
 			<!-- Меню -->
 			<div class='btn-group-vertical'>
 				<?php
+				include 'LAB2/lib.inc.php';
 				getMenu($menu);
 				?>
 			</div>
 			<?php
-			$page = "";
-			if (!empty($_GET['page'])) $page = $_GET['page'];
 			switch ($page) {
 				case 1:
 					include 'LAB1/lab_rab1.html';

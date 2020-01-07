@@ -4,7 +4,7 @@ $menu = array(
     "Лабораторная работа №1" => "index.php?page=1",
     "Лабораторная работа №2" => "index.php?page=2",
     "Лабораторная работа №3" => "index.php?page=3",
-    "Каталог" => "index.php?page=4"
+    "Каталог" => "/index.php?page=4"
 );
 function getMenu($menu)
 {

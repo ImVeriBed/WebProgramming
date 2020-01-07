@@ -8,12 +8,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['Item']['price'] = strip_tags(trim($_POST['price']));
         $_SESSION['Item']['dates'] = strip_tags(trim($_POST['dates']));
         $_SESSION['Item']['datep'] = strip_tags(trim($_POST['datep']));
-        header("Location: index.php?page=4");
+        header("Location: /index.php?page=4");
     } else echo 'Полностью заполните форму';
 }
 
 ?>
-
 
 <head>
     <meta charset='utf-8' />
