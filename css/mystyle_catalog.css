@@ -1,0 +1,35 @@
+.ctlg {
+    border: 1px solid black;
+    background: white;
+    border-radius: 10px;
+    padding: 5px;
+    width: 84.5%;
+    height: 100%;
+    margin-left: 15.5%;
+    display: block;
+    overflow: auto;
+}
+
+tr {
+    border: 2px solid black;
+}
+
+td {
+    border: 2px solid black;
+}
+
+table {
+    margin-top: 2em;
+}
+
+.hdr {
+    background-color: antiquewhite;
+}
+
+.col-sm-10 {
+    padding: 1em;
+}
+
+.btncenter {
+    text-align: center;
+}
