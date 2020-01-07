@@ -5,7 +5,7 @@
 
     <body>
         <div class="ctlg">
-            <button onclick="location.href='localhost/index.php?page=5'" type='submit' class='btn btn-default'>Добавить</button>
+            <button onclick="location.href='index.php?page=5'" type='submit' class='btn btn-default'>Добавить</button>
             <!-- <a href="index.php?page=5" class='btn btn-default'>Добавить</a> -->
             <button type='submit' class='btn btn-default'>Удалить</button>
             <?php

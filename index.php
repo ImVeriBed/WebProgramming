@@ -48,7 +48,7 @@ include 'LAB2/lib.inc.php';
 					include 'LAB3/add.php';
 					break;
 				default:
-					echo '<h3>Тут пока пусто</h3>';
+					echo '<h3>Сработал switch default</h3>';
 					break;
 			}
 			?>
