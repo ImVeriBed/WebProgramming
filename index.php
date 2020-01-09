@@ -26,7 +26,6 @@ if ($page == 4) {
 	}
 	session_start();
 	if (!is_array($_SESSION['Item'])) $_SESSION['Item'] = array();
-	// print_r($_SESSION['Item']);
 }
 ?>
 <!DOCTYPE html>
