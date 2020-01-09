@@ -1,5 +1,6 @@
 <?php
 $page = "";
+$cnt;
 if (!empty($_GET['page'])) $page = $_GET['page'];
 if ($page == 4) {
 	if ($_POST['action'] == "add") {
@@ -9,6 +10,7 @@ if ($page == 4) {
         $item['price'] = strip_tags(trim($_POST['price']));
         $item['dates'] = strip_tags(trim($_POST['dates']));
 		$item['datep'] = strip_tags(trim($_POST['datep']));
+		$item['id'] = $cnt++;
 		array_push($_SESSION['Item'], $item);
 		header("Location: /index.php?page=4");
 		exit;
@@ -21,7 +23,6 @@ if ($page == 4) {
 				unset($_SESSION['Item'][$key]);
 				break;
 			}
-
 		}		
 	}
 	session_start();
