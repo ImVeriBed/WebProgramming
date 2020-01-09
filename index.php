@@ -1,19 +1,47 @@
 <?php
 $page = "";
 if (!empty($_GET['page'])) $page = $_GET['page'];
-?>
+if ($page == 4) {
+	if ($_POST['action'] == "add") {
+		session_start();
+		$item = array();
+        $item['place'] = strip_tags(trim($_POST['place']));
+        $item['price'] = strip_tags(trim($_POST['price']));
+        $item['dates'] = strip_tags(trim($_POST['dates']));
+		$item['datep'] = strip_tags(trim($_POST['datep']));
+		array_push($_SESSION['Item'], $item);
+		header("Location: /index.php?page=4");
+		exit;
+	}
+	else if ($_POST['action'] == 'delete' && isset($_POST['id']))
+	{
+		foreach($_SESSION['Item'] as $key => $item) {
+			if ($item['id'] == $_POST['id'])
+			{
+				unset($_SESSION['Item'][$key]);
+				break;
+			}
 
+		}		
+	}
+	session_start();
+	if (!is_array($_SESSION['Item'])) $_SESSION['Item'] = array();
+	// print_r($_SESSION['Item']);
+}
+?>
+<!DOCTYPE html>
 <html>
 
 <head>
 	<meta charset='utf-8' />
 	<link href='css/bootstrap/bootstrap.css' rel='stylesheet' />
 	<link href='css/mystyle_index.css' rel='stylesheet' />
+	<link href="../css/mystyle_catalog.css" rel="stylesheet" type="text/css" />
 	<title>Главная страница</title>
 </head>
 
 <body>
-	<script src='js/bootstrap.js'></script>
+	<!-- <script src='js/bootstrap.js'></script> -->
 	<div class='divflex'>
 		<div class='logo'></div>
 		<!-- Верхняя панель -->
@@ -22,7 +50,7 @@ if (!empty($_GET['page'])) $page = $_GET['page'];
 		?>
 		<!-- /Верхняя панель -->
 		<!-- Основной контент -->
-		<form class='mainform'>
+		<div class='mainform'>
 			<!-- Меню -->
 			<div class='btn-group-vertical'>
 				<?php
@@ -53,7 +81,7 @@ if (!empty($_GET['page'])) $page = $_GET['page'];
 			}
 			?>
 			<!-- /Меню -->
-		</form>
+		</div>
 		<!-- /Основной контент -->
 		<!-- Нижняя панель -->
 		<?php
