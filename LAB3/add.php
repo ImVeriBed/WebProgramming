@@ -1,7 +1,7 @@
 <div class="ctlg">
     <form class="form-horizontal" method="POST" action="/index.php?page=4">
         <input type="hidden" name="action" value="add">
-        <input type='hidden' name='id'>
+        <input type='hidden' name='id' value="<?php echo $newid; ?>">
         <div class="form-group">
             <label class="col-sm-2 control-label">Место отдыха</label>
             <div class="col-sm-10">

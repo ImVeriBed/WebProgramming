@@ -15,15 +15,13 @@ function getMenu($menu)
 
 function html_table($data = array())
 {
-    $cnt = -1;
     $rows = array();
     foreach ($data as $row) {
-        $cnt++;
         $cells = array();
         foreach ($row as $cell) {
             $cells[] = "<td>{$cell}</td>";           
         }
-        array_push($cells, "<td><form method='POST' action='/index.php?page=4'><input type='hidden' name='action' value='delete'><input type='hidden' name='id' value={$cnt}><button type='submit' class='btn btn-default'>Удалить</button></form></td>");       
+        array_push($cells, "<td><form method='POST' action='/index.php?page=4'><input type='hidden' name='action' value='delete'><input type='hidden' name='id' value={$row['id']}><button type='submit' class='btn btn-default'>Удалить</button></form></td>");       
         $rows[] = "<tr>" . implode('', $cells) . "</tr>";
     }
     return "<table class='table'><tr class = 'hdr'><td>Место</td><td>Цена, р</td><td>Дата отправления</td><td>Дата возвращения</td><td></td></tr>" . implode('', $rows) . "</table>";

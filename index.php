@@ -1,18 +1,23 @@
 <?php
 $page = "";
 $cnt;
+session_start();
+$newid = count($_SESSION['Item']) + 1;
 if (!empty($_GET['page'])) $page = $_GET['page'];
 if ($page == 4) {
+	if ($_GET['action'] == 'view') {
+		$itemId = $_GET['item']; 
+	}
 	if ($_POST['action'] == "add") {
-		session_start();
 		$item = array();
         $item['place'] = strip_tags(trim($_POST['place']));
         $item['price'] = strip_tags(trim($_POST['price']));
         $item['dates'] = strip_tags(trim($_POST['dates']));
 		$item['datep'] = strip_tags(trim($_POST['datep']));
-		$item['id'] = $cnt++;
+		$item['id'] = strip_tags(trim($_POST['id']));
 		array_push($_SESSION['Item'], $item);
 		header("Location: /index.php?page=4");
+		// index.php?page=4&action=view&item=2
 		exit;
 	}
 	else if ($_POST['action'] == 'delete' && isset($_POST['id']))
@@ -25,8 +30,8 @@ if ($page == 4) {
 			}
 		}		
 	}
-	session_start();
 	if (!is_array($_SESSION['Item'])) $_SESSION['Item'] = array();
+	//unset($_SESSION['Item']);
 }
 ?>
 <!DOCTYPE html>
