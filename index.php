@@ -17,16 +17,15 @@ if ($page == 4 || $page == 7) {
 		$item['dates'] = strip_tags(trim($_POST['dates']));
 		$item['datep'] = strip_tags(trim($_POST['datep']));
 		$item['id'] = strip_tags(trim($_POST['id']));
-		$buffvar = $item;
 		if ($_POST['action'] == "update") {
-			foreach ($_SESSION['Item'] as $key => $item) {
-				if ($item['id'] == $_POST['id']) {
+			foreach ($_SESSION['Item'] as $key => $value) {
+				if ($value['id'] == $_POST['id']) {
 					unset($_SESSION['Item'][$key]);
 					break;
 				}
 			}
 		}
-		array_push($_SESSION['Item'], $buffvar);
+		array_push($_SESSION['Item'], $item);
 		header("Location: /index.php?page=4");
 		// index.php?page=4&action=view&item=2
 		exit;
