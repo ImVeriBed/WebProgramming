@@ -39,5 +39,5 @@ function html_table($data = array())
          </form></td>");     
         $rows[] = "<tr>" . implode('', $cells) . "</tr>";
     }
-    return "<table class='table'><tr class = 'hdr'><td>Место</td><td>Цена, р</td><td>Дата отправления</td><td>Дата возвращения</td><td></td></tr>" . implode('', $rows) . "</table>";
+    return "<table class='table'><tr class = 'hdr'><td>Место</td><td>Цена, р</td><td>Дата отправления</td><td>Дата возвращения</td><td>ID</td><td>Просмотр</td><td>Удаление</td></tr>" . implode('', $rows) . "</table>";
 }
