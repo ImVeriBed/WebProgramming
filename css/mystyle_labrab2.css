@@ -41,4 +41,5 @@ h3 {
     margin-left: 15.5%;
     display: block;
     overflow: auto;
+    overflow-x: hidden;
 }
