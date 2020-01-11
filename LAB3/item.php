@@ -26,13 +26,18 @@
                 <input class="form-control" name='datep' value="<?php echo $_GET['datep']; ?>" readonly>
             </div>
         </div>
-        <div class="btncenter">
-        <img src="<?php echo $_GET['filename']; ?>";
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Редактировать</button>
-                </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Путь к файлу</label>
+            <div class="col-sm-10">
+                <input class="form-control" name='filename' value="<?php echo $_GET['filename']; ?>" readonly>
             </div>
-        </div>       
-    </form>
+        </div>
+        <div class="btncenter">
+            <img src="<?php echo $_GET['filename']; ?>" ; <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Редактировать</button>
+            </div>
+        </div>
+</div>
+</form>
 </div>

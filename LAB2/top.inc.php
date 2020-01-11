@@ -1,4 +1,5 @@
 <form class='formHeader' method="POST" action="/index.php">
+<input type="hidden" name="logintime" value="<?php echo date('d.m.Y, H:i:s', time())?>">
     <div class='form-inline'>
         <div class='form-group'>
             <label for='login'>Логин:</label>

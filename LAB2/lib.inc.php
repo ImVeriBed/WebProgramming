@@ -78,3 +78,70 @@ function resize($file)
         return $file['name'];
     }
 }
+
+function calculation()
+{
+    $arr = array();
+    switch (strip_tags(trim($_POST['location']))) {
+        case 1:
+            $arr['location'] = 1000;
+            break;
+        case 2:
+            $arr['location'] = 2000;
+            break;
+        case 3:
+            $arr['location'] = 3000;
+            break;
+        case 4:
+            $arr['location'] = 4000;
+            break;
+    }
+
+    switch (strip_tags(trim($_POST['season']))) {
+        case 1:
+            $arr['season'] = 1000;
+            break;
+        case 2:
+            $arr['season'] = 2000;
+            break;
+        case 3:
+            $arr['season'] = 3000;
+            break;
+        case 4:
+            $arr['season'] = 4000;
+            break;
+    }
+
+    switch (strip_tags(trim($_POST['age']))) {
+        case 1:
+            $arr['age'] = 1000;
+            break;
+        case 2:
+            $arr['age'] = 2000;
+            break;
+        case 3:
+            $arr['age'] = 3000;
+            break;
+        case 4:
+            $arr['age'] = 4000;
+            break;
+    }
+
+    switch (strip_tags(trim($_POST['stars']))) {
+        case 1:
+            $arr['stars'] = 1000;
+            break;
+        case 2:
+            $arr['stars'] = 2000;
+            break;
+        case 3:
+            $arr['stars'] = 3000;
+            break;
+        case 4:
+            $arr['stars'] = 4000;
+            break;
+    }
+    $result = $arr['location'] + $arr['season'] + $arr['age'] + $arr['stars'];
+    echo "<h3>Стоимость проживания: {$result}</h3>";
+
+}

@@ -1,10 +1,16 @@
 <?php
 $page = "";
 $top = 'LAB2/top.inc.php';
+$lastlog;
+header('Cache-control: no-store'); // запрет кэширования
 session_start();
 
 if (isset($_POST['login'])) {
 	$_SESSION['login'] = $_POST['login'];
+	if ($_SESSION['login'] == 'admin') {
+		$lastlog = $_COOKIE["LastLog"];		
+		setcookie("LastLog", $_POST['logintime'], 0x7FFFFFFF);
+	}
 }
 
 include 'LAB2/lib.inc.php';
@@ -26,7 +32,10 @@ if ($page == 4 || $page == 7) {
 		header("Location: /index.php?page=6&action=view&id={$_POST['id']}&place={$_POST['place']}&price={$_POST['price']}&dates={$_POST['dates']}&datep={$_POST['datep']}&filename={$_POST['filename']}");
 	}
 	if ($_POST['action'] == 'edit') {
-		header("Location: /index.php?page=7&action=view&id={$_POST['id']}&place={$_POST['place']}&price={$_POST['price']}&dates={$_POST['dates']}&datep={$_POST['datep']}");
+		header("Location: /index.php?page=7&action=view&id={$_POST['id']}&place={$_POST['place']}&price={$_POST['price']}&dates={$_POST['dates']}&datep={$_POST['datep']}&filename={$_POST['filename']}");
+	}
+	if ($_POST['action'] == 'lab3') {
+		header("Location: /index.php?page=3&action=view&id={$_POST['id']}&place={$_POST['place']}&price={$_POST['price']}&dates={$_POST['dates']}&datep={$_POST['datep']}&filename={$_POST['filename']}");
 	}
 	if ($_POST['action'] == "add" || $_POST['action'] == "update") {
 		$item = array();
@@ -35,7 +44,7 @@ if ($page == 4 || $page == 7) {
 		$item['dates'] = strip_tags(trim($_POST['dates']));
 		$item['datep'] = strip_tags(trim($_POST['datep']));
 		$item['id'] = strip_tags(trim($_POST['id']));
-		// $item['filename'] = strip_tags(trim($_POST['filename']));
+		$item['filename'] = strip_tags(trim($_POST['filename']));
 		if ($_POST['action'] == "update") {
 			foreach ($_SESSION['Item'] as $key => $value) {
 				if ($value['id'] == $_POST['id']) {
@@ -54,15 +63,10 @@ if ($page == 4 || $page == 7) {
 				$uploadlink = "downloads/images/" . $name;
 			unlink($tmp_path . $name);
 			$item['filename'] = $uploadlink;
-			// 	echo "Изображение загружено!</br>		
-			// Имя файла: " . $_FILES['uploadfile']['name'] . "</br>		
-			// Тип файла: " . $_FILES['uploadfile']['type'] . "</br>		
-			// Размер файла: " . $_FILES['uploadfile']['size'] . "</br>";
-		}
+		} else $item['filename'] = strip_tags(trim($_POST['filename']));
 
 		array_push($_SESSION['Item'], $item);
 		header("Location: /index.php?page=4");
-		// index.php?page=4&action=view&item=2
 		exit;
 	} else if ($_POST['action'] == 'delete' && isset($_POST['id'])) {
 		foreach ($_SESSION['Item'] as $key => $obj) {
@@ -88,18 +92,14 @@ if ($page == 4 || $page == 7) {
 </head>
 
 <body>
-	<script src='js/bootstrap.js'></script>
+	<!-- <script src='js/bootstrap.js'></script> -->
 	<div class='divflex'>
 		<div class='logo'></div>
-		<!-- Верхняя панель -->
 		<?php
 		if ($_SESSION['login'] != 'admin') include $top;
 		else echo "<form class='formHeader' method='POST' action='/index.php'><div class='form-inline'><a>Вы авторизованы под именем {$_SESSION['login']}     </a><button class='btn btn-default' name='login' value='Выйти'>Выйти</button></div></form>";
 		?>
-		<!-- /Верхняя панель -->
-		<!-- Основной контент -->
 		<div class='mainform'>
-			<!-- Меню -->
 			<div class='btn-group-vertical'>
 				<?php getMenu($menu); ?>
 			</div>
@@ -143,14 +143,10 @@ if ($page == 4 || $page == 7) {
 				}
 			}
 			?>
-			<!-- /Меню -->
 		</div>
-		<!-- /Основной контент -->
-		<!-- Нижняя панель -->
 		<?php
-		include 'LAB2/bottom.inc.php';
+		if ($page != 6) include 'LAB2/bottom.inc.php';
 		?>
-		<!-- /Нижняя панель -->
 	</div>
 </body>
 

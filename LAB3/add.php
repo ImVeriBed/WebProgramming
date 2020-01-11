@@ -25,13 +25,10 @@
             <div class="col-sm-10">
                 <input type="date" class="form-control" name='datep'>
             </div>
-
         </div>
         <div class="filecss">
             <input class="form-control" type="file" name='uploadfile'>
-            <!-- <input class="form-control" type="submit" value="Загрузить"> -->
         </div>
-
         <div class="btncenter">
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
