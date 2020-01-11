@@ -1,8 +1,8 @@
-<form class='formHeader'>
+<form class='formHeader' method="POST" action="/index.php">
     <div class='form-inline'>
         <div class='form-group'>
             <label for='login'>Логин:</label>
-            <input class='form-control' id='login'>
+            <input class='form-control' name='login'>
         </div>
         <div class='form-group'>
             <label for='pwd'>Пароль:</label>

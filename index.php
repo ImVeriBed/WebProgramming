@@ -1,6 +1,11 @@
 <?php
 $page = "";
 session_start();
+if (isset($_POST['login'])) 
+{
+	$_SESSION['login'] = $_POST['login'];
+}
+	
 $newid = count($_SESSION['Item']) + 1;
 if (!empty($_GET['page'])) $page = $_GET['page'];
 if ($page == 4 || $page == 7) {
@@ -71,31 +76,33 @@ if ($page == 4 || $page == 7) {
 				?>
 			</div>
 			<?php
-			switch ($page) {
-				case 1:
-					include 'LAB1/lab_rab1.html';
-					break;
-				case 2:
-					include 'LAB2/lab_rab2.php';
-					break;
-				case 3:
-					include 'LAB3/lab_rab3.php';
-					break;
-				case 4:
-					include 'LAB3/catalog.php';
-					break;
-				case 5:
-					include 'LAB3/add.php';
-					break;
-				case 6:
-					include 'LAB3/item.php';
-					break;
-				case 7:
-					include 'LAB3/edit.php';
-					break;
-				default:
-					echo '<h3>Сработал switch default</h3>';
-					break;
+			if ($_SESSION['login'] == 'admin') {
+				switch ($page) {
+					case 1:
+						include 'LAB1/lab_rab1.html';
+						break;
+					case 2:
+						include 'LAB2/lab_rab2.php';
+						break;
+					case 3:
+						include 'LAB3/lab_rab3.php';
+						break;
+					case 4:
+						include 'LAB3/catalog.php';
+						break;
+					case 5:
+						include 'LAB3/add.php';
+						break;
+					case 6:
+						include 'LAB3/item.php';
+						break;
+					case 7:
+						include 'LAB3/edit.php';
+						break;
+					default:
+						echo '<h3>Сработал switch default</h3>';
+						break;
+				}
 			}
 			?>
 			<!-- /Меню -->
