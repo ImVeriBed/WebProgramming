@@ -1,34 +1,42 @@
 <?php
 $page = "";
-$cnt;
 session_start();
 $newid = count($_SESSION['Item']) + 1;
 if (!empty($_GET['page'])) $page = $_GET['page'];
-if ($page == 4) {
-	if ($_GET['action'] == 'view') {
-		$itemId = $_GET['item']; 
+if ($page == 4 || $page == 7) {
+	if ($_POST['action'] == 'view') {
+		header("Location: /index.php?page=6&action=view&id={$_POST['id']}&place={$_POST['place']}&price={$_POST['price']}&dates={$_POST['dates']}&datep={$_POST['datep']}");
 	}
-	if ($_POST['action'] == "add") {
+	if ($_POST['action'] == 'edit') {
+		header("Location: /index.php?page=7&action=view&id={$_POST['id']}&place={$_POST['place']}&price={$_POST['price']}&dates={$_POST['dates']}&datep={$_POST['datep']}");
+	}
+	if ($_POST['action'] == "add" || $_POST['action'] == "update") {
 		$item = array();
-        $item['place'] = strip_tags(trim($_POST['place']));
-        $item['price'] = strip_tags(trim($_POST['price']));
-        $item['dates'] = strip_tags(trim($_POST['dates']));
+		$item['place'] = strip_tags(trim($_POST['place']));
+		$item['price'] = strip_tags(trim($_POST['price']));
+		$item['dates'] = strip_tags(trim($_POST['dates']));
 		$item['datep'] = strip_tags(trim($_POST['datep']));
 		$item['id'] = strip_tags(trim($_POST['id']));
-		array_push($_SESSION['Item'], $item);
+		$buffvar = $item;
+		if ($_POST['action'] == "update") {
+			foreach ($_SESSION['Item'] as $key => $item) {
+				if ($item['id'] == $_POST['id']) {
+					unset($_SESSION['Item'][$key]);
+					break;
+				}
+			}
+		}
+		array_push($_SESSION['Item'], $buffvar);
 		header("Location: /index.php?page=4");
 		// index.php?page=4&action=view&item=2
 		exit;
-	}
-	else if ($_POST['action'] == 'delete' && isset($_POST['id']))
-	{
-		foreach($_SESSION['Item'] as $key => $item) {
-			if ($item['id'] == $_POST['id'])
-			{
+	} else if ($_POST['action'] == 'delete' && isset($_POST['id'])) {
+		foreach ($_SESSION['Item'] as $key => $item) {
+			if ($item['id'] == $_POST['id']) {
 				unset($_SESSION['Item'][$key]);
 				break;
 			}
-		}		
+		}
 	}
 	if (!is_array($_SESSION['Item'])) $_SESSION['Item'] = array();
 	//unset($_SESSION['Item']);
@@ -46,7 +54,7 @@ if ($page == 4) {
 </head>
 
 <body>
-	<!-- <script src='js/bootstrap.js'></script> -->
+	<script src='js/bootstrap.js'></script>
 	<div class='divflex'>
 		<div class='logo'></div>
 		<!-- Верхняя панель -->
@@ -79,6 +87,12 @@ if ($page == 4) {
 					break;
 				case 5:
 					include 'LAB3/add.php';
+					break;
+				case 6:
+					include 'LAB3/item.php';
+					break;
+				case 7:
+					include 'LAB3/edit.php';
 					break;
 				default:
 					echo '<h3>Сработал switch default</h3>';
