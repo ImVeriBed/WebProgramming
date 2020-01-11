@@ -65,7 +65,7 @@ if ($page == 4 || $page == 7) {
 		<!-- Верхняя панель -->
 		<?php
 		if ($_SESSION['login'] != 'admin') include $top;
-		else echo "Вы авторизованы под именем {$_SESSION['login']}";
+		else echo "<form class='formHeader' method='POST' action='/index.php'><div class='form-inline'><a>Вы авторизованы под именем {$_SESSION['login']}     </a><button class='btn btn-default' name='login' value='Выйти'>Выйти</button></div></form>";
 		?>
 		<!-- /Верхняя панель -->
 		<!-- Основной контент -->
