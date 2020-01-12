@@ -9,7 +9,7 @@ session_start();
 
 if ($_POST['action'] == 'auth' || $_POST['login'] == 'Выйти') {
 	$_SESSION['login'] = $_POST['login'];
-	
+
 	$_SESSION['IsPwd'] = false;
 	$link = mysqli_connect($host, $user, $password, $database)
 		or die("Ошибка " . mysqli_error($link));
@@ -162,6 +162,9 @@ if ($page == 4 || $page == 7) {
 						break;
 					case 8:
 						include 'LAB4/registration.php';
+						break;
+					case 9:
+						include 'LAB4/lab_rab4.php';
 						break;
 					default:
 						echo '<div class="ctlg"><p>

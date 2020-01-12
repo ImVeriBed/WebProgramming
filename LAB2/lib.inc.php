@@ -4,6 +4,7 @@ $menu = array(
     "Лабораторная работа №1" => "index.php?page=1",
     "Лабораторная работа №2" => "index.php?page=2",
     "Лабораторная работа №3" => "index.php?page=3",
+    "Лабораторная работа №4" => "index.php?page=9",
     "Каталог" => "/index.php?page=4",
     "Регистрация" => "/index.php?page=8"
 );
@@ -85,6 +86,22 @@ function getTableByBase(mysqli_result $result)
         <button type='submit' class='btn btn-default'>Удалить</button>
         </form></td>";
 
+        echo "</tr>";
+    }
+    echo "</table>";
+    mysqli_free_result($result);
+}
+
+function getTableByBaseSimple(mysqli_result $result)
+{
+    $rows = mysqli_num_rows($result); 
+     
+    echo "<table class='table'><tr class = 'hdr'><th>Id</th><th>Модель</th><th>Производитель</th></tr>";
+    for ($i = 0 ; $i < $rows ; ++$i)
+    {
+        $row = mysqli_fetch_row($result);
+        echo "<tr>";
+            for ($j = 0 ; $j < 3 ; ++$j) echo "<td>$row[$j]</td>";
         echo "</tr>";
     }
     echo "</table>";
