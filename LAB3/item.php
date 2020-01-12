@@ -35,7 +35,7 @@
         <div class="btncenter">
             <img src="<?php echo $_GET['filename']; ?>" ; <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Редактировать</button>
+                <?php if ($_SESSION['login'] == 'admin') echo "<button type='submit' class='btn btn-default'>Редактировать</button>"?>
             </div>
         </div>
 </div>

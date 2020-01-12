@@ -80,7 +80,7 @@ function getTableByBase(mysqli_result $result)
         <button type='submit' class='btn btn-default'>Открыть</button>
         </form></td>";
 
-        echo "<td><form method='POST' action='/index.php?page=4'>
+        if ($_SESSION['login'] == 'admin') echo "<td><form method='POST' action='/index.php?page=4'>
         <input type='hidden' name='action' value='delete'>
         <input type='hidden' name='id' value={$row['0']}>
         <button type='submit' class='btn btn-default'>Удалить</button>
