@@ -3,6 +3,7 @@ require 'LAB4/connection.php';
 $page = "";
 $top = 'LAB2/top.inc.php';
 $IsPwd;
+$IsLgn;
 $lastlog;
 header('Cache-control: no-store');
 session_start();
@@ -11,6 +12,7 @@ if ($_POST['action'] == 'auth' || $_POST['login'] == 'Выйти') {
 	$_SESSION['login'] = $_POST['login'];
 
 	$_SESSION['IsPwd'] = false;
+	$_SESSION['IsLgn'] = false;
 	$link = mysqli_connect($host, $user, $password, $database)
 		or die("Ошибка " . mysqli_error($link));
 
@@ -18,11 +20,16 @@ if ($_POST['action'] == 'auth' || $_POST['login'] == 'Выйти') {
 	$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
 	$row = mysqli_fetch_row($result);
 	if ($row != null)
+	{
+		$IsLgn = true;
 		$IsPwd = hash_equals($row['2'], crypt($_POST['password'], $row['2']));
 	mysqli_close($link);
+	}
 
-	if ($_SESSION['login'] == 'admin' && $IsPwd) {
+
+	if ($IsLgn && $IsPwd) {
 		$lastlog = $_COOKIE["LastLog"];
+		$_SESSION['IsLgn'] = $IsLgn;
 		$_SESSION['IsPwd'] = $IsPwd;
 		setcookie("LastLog", $_POST['logintime'], 0x7FFFFFFF);
 	}
@@ -129,7 +136,7 @@ if ($page == 4 || $page == 7) {
 	<div class='divflex'>
 		<div class='logo'></div>
 		<?php
-		if ($_SESSION['login'] != 'admin' || $_SESSION['IsPwd'] != true) include $top;
+		if (!$_SESSION['IsLgn'] || !$_SESSION['IsPwd']) include $top;
 		else echo "<form class='formHeader' method='POST' action='/index.php'><div class='form-inline'><a>Вы авторизованы под именем {$_SESSION['login']}     </a><button class='btn btn-default' name='login' value='Выйти'>Выйти</button></div></form>";
 		?>
 		<div class='mainform'>
@@ -137,7 +144,7 @@ if ($page == 4 || $page == 7) {
 				<?php getMenu($menu); ?>
 			</div>
 			<?php
-			if ($_SESSION['login'] == 'admin' && $_SESSION['IsPwd'] == true) {
+			if ($_SESSION['IsLgn'] && $_SESSION['IsPwd']) {
 				switch ($page) {
 					case 1:
 						include 'LAB1/lab_rab1.html';
