@@ -12,6 +12,6 @@
     }
 
     mysqli_close($link);
-    ?>
-    <a href="index.php?page=5" class='btn btn-default' type="submit">Добавить</a>
+    if ($_SESSION['login'] == 'admin') echo "<a href='index.php?page=5' class='btn btn-default' type='submit'>Добавить</a>";
+    ?>  
 </div>
