@@ -1,14 +1,15 @@
 <?php
+require 'connection.php';
 $page = "";
 $top = 'LAB2/top.inc.php';
 $lastlog;
-header('Cache-control: no-store'); // запрет кэширования
+header('Cache-control: no-store');
 session_start();
 
 if (isset($_POST['login'])) {
 	$_SESSION['login'] = $_POST['login'];
 	if ($_SESSION['login'] == 'admin') {
-		$lastlog = $_COOKIE["LastLog"];		
+		$lastlog = $_COOKIE["LastLog"];
 		setcookie("LastLog", $_POST['logintime'], 0x7FFFFFFF);
 	}
 }
@@ -45,14 +46,6 @@ if ($page == 4 || $page == 7) {
 		$item['datep'] = strip_tags(trim($_POST['datep']));
 		$item['id'] = strip_tags(trim($_POST['id']));
 		$item['filename'] = strip_tags(trim($_POST['filename']));
-		if ($_POST['action'] == "update") {
-			foreach ($_SESSION['Item'] as $key => $value) {
-				if ($value['id'] == $_POST['id']) {
-					unset($_SESSION['Item'][$key]);
-					break;
-				}
-			}
-		}
 
 		if (!empty($_FILES['uploadfile']['name'])) {
 			$tmp_path = 'downloads/tmp/';
@@ -65,7 +58,21 @@ if ($page == 4 || $page == 7) {
 			$item['filename'] = $uploadlink;
 		} else $item['filename'] = strip_tags(trim($_POST['filename']));
 
-		array_push($_SESSION['Item'], $item);
+		$link = mysqli_connect($host, $user, $password, $database)
+			or die("Ошибка " . mysqli_error($link));
+
+		if ($_POST['action'] == "add") {
+			$query = "INSERT INTO travel VALUES(NULL, '{$item['place']}','{$item['price']}', '{$item['dates']}', '{$item['datep']}', '{$item['filename']}')";
+			$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
+		}
+
+		if ($_POST['action'] == "update") {
+			$query = "UPDATE travel set place = '{$item['place']}', price = '{$item['price']}', dates = '{$item['dates']}', datep = '{$item['datep']}', imagepath = '{$item['filename']}' where id = '{$item['id']}'";
+			$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
+		}
+
+		mysqli_close($link);
+
 		header("Location: /index.php?page=4");
 		exit;
 	} else if ($_POST['action'] == 'delete' && isset($_POST['id'])) {
