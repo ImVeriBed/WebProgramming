@@ -1,15 +1,29 @@
 <?php
-require 'connection.php';
+require 'LAB4/connection.php';
 $page = "";
 $top = 'LAB2/top.inc.php';
+$IsPwd;
 $lastlog;
 header('Cache-control: no-store');
 session_start();
 
-if (isset($_POST['login'])) {
+if ($_POST['action'] == 'auth' || $_POST['login'] == 'Выйти') {
 	$_SESSION['login'] = $_POST['login'];
-	if ($_SESSION['login'] == 'admin') {
+	
+	$_SESSION['IsPwd'] = false;
+	$link = mysqli_connect($host, $user, $password, $database)
+		or die("Ошибка " . mysqli_error($link));
+
+	$query = "SELECT * FROM authusers WHERE login = '{$_POST['login']}'";
+	$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
+	$row = mysqli_fetch_row($result);
+	if ($row != null)
+		$IsPwd = hash_equals($row['2'], crypt($_POST['password'], $row['2']));
+	mysqli_close($link);
+
+	if ($_SESSION['login'] == 'admin' && $IsPwd) {
 		$lastlog = $_COOKIE["LastLog"];
+		$_SESSION['IsPwd'] = $IsPwd;
 		setcookie("LastLog", $_POST['logintime'], 0x7FFFFFFF);
 	}
 }
@@ -18,7 +32,6 @@ include 'LAB2/lib.inc.php';
 $newid = 1;
 
 if (is_array($_SESSION['Item'])) {
-	// $newid = intval(end(end($_SESSION['Item']))) + 1;
 	foreach ($_SESSION['Item'] as $key => $obj) {
 		if (intval($obj['id']) > $newid) {
 			$newid = intval($obj['id']);
@@ -27,7 +40,18 @@ if (is_array($_SESSION['Item'])) {
 	$newid++;
 }
 
-if (!empty($_GET['page'])) $page = $_GET['page'];
+if (!empty($_GET['page']))
+	$page = $_GET['page'];
+
+if ($_POST['action'] == 'reg') {
+	$link = mysqli_connect($host, $user, $password, $database)
+		or die("Ошибка " . mysqli_error($link));
+	$pwd = crypt($_POST['password']);
+	$query = "INSERT INTO authusers VALUES(NULL, '{$_POST['login']}','{$pwd}', '{$_POST['email']}')";
+	$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
+	mysqli_close($link);
+}
+
 if ($page == 4 || $page == 7) {
 	if ($_POST['action'] == 'view') {
 		header("Location: /index.php?page=6&action=view&id={$_POST['id']}&place={$_POST['place']}&price={$_POST['price']}&dates={$_POST['dates']}&datep={$_POST['datep']}&filename={$_POST['filename']}");
@@ -76,15 +100,17 @@ if ($page == 4 || $page == 7) {
 		header("Location: /index.php?page=4");
 		exit;
 	} else if ($_POST['action'] == 'delete' && isset($_POST['id'])) {
-		foreach ($_SESSION['Item'] as $key => $obj) {
-			if ($obj['id'] == $_POST['id']) {
-				unset($_SESSION['Item'][$key]);
-				break;
-			}
-		}
+
+		$link = mysqli_connect($host, $user, $password, $database)
+			or die("Ошибка " . mysqli_error($link));
+
+		$query = "DELETE FROM travel where id = '{$_POST['id']}'";
+		$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
+
+		mysqli_close($link);
 	}
+
 	if (!is_array($_SESSION['Item'])) $_SESSION['Item'] = array();
-	//unset($_SESSION['Item']);
 }
 ?>
 <!DOCTYPE html>
@@ -103,7 +129,7 @@ if ($page == 4 || $page == 7) {
 	<div class='divflex'>
 		<div class='logo'></div>
 		<?php
-		if ($_SESSION['login'] != 'admin') include $top;
+		if ($_SESSION['login'] != 'admin' || $_SESSION['IsPwd'] != true) include $top;
 		else echo "<form class='formHeader' method='POST' action='/index.php'><div class='form-inline'><a>Вы авторизованы под именем {$_SESSION['login']}     </a><button class='btn btn-default' name='login' value='Выйти'>Выйти</button></div></form>";
 		?>
 		<div class='mainform'>
@@ -111,7 +137,7 @@ if ($page == 4 || $page == 7) {
 				<?php getMenu($menu); ?>
 			</div>
 			<?php
-			if ($_SESSION['login'] == 'admin') {
+			if ($_SESSION['login'] == 'admin' && $_SESSION['IsPwd'] == true) {
 				switch ($page) {
 					case 1:
 						include 'LAB1/lab_rab1.html';
@@ -134,6 +160,9 @@ if ($page == 4 || $page == 7) {
 					case 7:
 						include 'LAB3/edit.php';
 						break;
+					case 8:
+						include 'LAB4/registration.php';
+						break;
 					default:
 						echo '<div class="ctlg"><p>
 						Россия богата экскурсионными маршрутами и объектами: белокаменная Москва, Санкт–Петербург – город
@@ -148,7 +177,7 @@ if ($page == 4 || $page == 7) {
 					</p></div>';
 						break;
 				}
-			}
+			} else include 'LAB4/registration.php';
 			?>
 		</div>
 		<?php

@@ -4,7 +4,8 @@ $menu = array(
     "Лабораторная работа №1" => "index.php?page=1",
     "Лабораторная работа №2" => "index.php?page=2",
     "Лабораторная работа №3" => "index.php?page=3",
-    "Каталог" => "/index.php?page=4"
+    "Каталог" => "/index.php?page=4",
+    "Регистрация" => "/index.php?page=8"
 );
 function getMenu($menu)
 {
@@ -61,7 +62,7 @@ function getTableByBase(mysqli_result $result)
     <th>Просмотр</th>
     <th>Удаление</th>       
     </tr>";
-    
+
     for ($i = 0; $i < $rows; ++$i) {
         $row = mysqli_fetch_row($result);
         echo "<tr>";
