@@ -4,7 +4,9 @@ $menu = array(
     "Лабораторная работа №1" => "index.php?page=1",
     "Лабораторная работа №2" => "index.php?page=2",
     "Лабораторная работа №3" => "index.php?page=3",
-    "Каталог" => "/index.php?page=4"
+    "Лабораторная работа №4" => "index.php?page=9",
+    "Каталог" => "/index.php?page=4",
+    "Регистрация" => "/index.php?page=8"
 );
 function getMenu($menu)
 {
@@ -45,6 +47,65 @@ function html_table($data = array())
         $rows[] = "<tr>" . implode('', $cells) . "</tr>";
     }
     return "<table class='table'><tr class = 'hdr'><td>Место</td><td>Цена, р</td><td>Дата отправления</td><td>Дата возвращения</td><td>Просмотр</td><td>Удаление</td></tr>" . implode('', $rows) . "</table>";
+}
+
+function getTableByBase(mysqli_result $result)
+{
+    $rows = mysqli_num_rows($result); // количество полученных строк
+
+    echo "<table class='table'><tr class = 'hdr'>
+    <th>Id</th>
+    <th>Место</th>
+    <th>Цена</th>
+    <th>Дата поездник</th>
+    <th>Дата возвращения</th>
+    <th>Изображение</th>
+    <th>Просмотр</th>
+    <th>Удаление</th>       
+    </tr>";
+
+    for ($i = 0; $i < $rows; ++$i) {
+        $row = mysqli_fetch_row($result);
+        echo "<tr>";
+        for ($j = 0; $j < 6; ++$j) echo "<td>$row[$j]</td>";
+
+        echo "<td><form method='POST' action='/index.php?page=4'>
+        <input type='hidden' name='action' value='view'>
+        <input type='hidden' name='id' value={$row['0']}>
+        <input type='hidden' name='place' value={$row['1']}>
+        <input type='hidden' name='price' value={$row['2']}>
+        <input type='hidden' name='dates' value={$row['3']}>
+        <input type='hidden' name='datep' value={$row['4']}>
+        <input type='hidden' name='filename' value={$row['5']}>
+        <button type='submit' class='btn btn-default'>Открыть</button>
+        </form></td>";
+
+        if ($_SESSION['login'] == 'admin') echo "<td><form method='POST' action='/index.php?page=4'>
+        <input type='hidden' name='action' value='delete'>
+        <input type='hidden' name='id' value={$row['0']}>
+        <button type='submit' class='btn btn-default'>Удалить</button>
+        </form></td>";
+
+        echo "</tr>";
+    }
+    echo "</table>";
+    mysqli_free_result($result);
+}
+
+function getTableByBaseSimple(mysqli_result $result)
+{
+    $rows = mysqli_num_rows($result); 
+     
+    echo "<table class='table'><tr class = 'hdr'><th>Id</th><th>Модель</th><th>Производитель</th></tr>";
+    for ($i = 0 ; $i < $rows ; ++$i)
+    {
+        $row = mysqli_fetch_row($result);
+        echo "<tr>";
+            for ($j = 0 ; $j < 3 ; ++$j) echo "<td>$row[$j]</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+    mysqli_free_result($result);
 }
 
 function resize($file)
@@ -143,5 +204,4 @@ function calculation()
     }
     $result = $arr['location'] + $arr['season'] + $arr['age'] + $arr['stars'];
     echo "<h3>Стоимость проживания: {$result}</h3>";
-
 }
